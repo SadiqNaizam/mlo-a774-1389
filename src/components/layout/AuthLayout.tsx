@@ -1,1 +1,15 @@
-// ERROR: Exception during LLM call: 500: HTTP error occurred: {'message': 'Could not process the request : 500 Internal Server Error from POST https://avaplus-internal.avateam.io/api/v1/googleai/query'}
+import React from 'react';
+
+interface AuthLayoutProps {
+  children: React.ReactNode;
+}
+
+const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
+  return (
+    <main className="flex items-center justify-center min-h-screen w-full">
+      {children}
+    </main>
+  );
+};
+
+export default AuthLayout;
