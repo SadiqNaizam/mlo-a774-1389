@@ -1,36 +1,31 @@
 import React from 'react';
+import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
+import FormHeading from './FormHeading';
 import FormInput from './FormInput';
+import FormActions from './FormActions';
 
 const LoginForm: React.FC = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
-  // A real form would have a submit handler passed via props or context
-  // For this component structure, state is managed internally for simplicity.
+    
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Login attempt");
+  };
 
   return (
-    <div className="w-full flex flex-col gap-8">
-      <FormInput
-        id="email"
-        name="email"
-        type="email"
-        placeholder="Email Address"
-        autoComplete="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <FormInput
-        id="password"
-        name="password"
-        type="password"
-        placeholder="Password"
-        autoComplete="current-password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-    </div>
+    <Card className="w-[380px]">
+      <CardHeader>
+        <FormHeading title="Welcome Back" description="Enter your credentials to log in." />
+      </CardHeader>
+      <form>
+        <CardContent className="grid gap-4">
+          <FormInput label="Email" id="email" type="email" placeholder="name@example.com" />
+          <FormInput label="Password" id="password" type="password" placeholder="••••••••" />
+        </CardContent>
+        <CardFooter>
+          <FormActions primaryActionText="Login" onPrimaryAction={handleLogin} />
+        </CardFooter>
+      </form>
+    </Card>
   );
 };
 
