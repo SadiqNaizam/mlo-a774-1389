@@ -1,10 +1,16 @@
 import React from 'react';
 
-const FormHeading: React.FC = () => {
+interface FormHeadingProps {
+  title: string;
+  description?: string;
+}
+
+const FormHeading: React.FC<FormHeadingProps> = ({ title, description }) => {
   return (
-    <h1 className="text-2xl font-bold text-card-foreground">
-      Welcome
-    </h1>
+    <div className="text-center">
+      <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+      {description && <p className="text-sm text-muted-foreground">{description}</p>}
+    </div>
   );
 };
 
