@@ -1,24 +1,19 @@
-import * as React from 'react';
-import { cn } from '@/lib/utils';
+import React from 'react';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
 
-export interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  id: string;
+}
 
-const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <input
-        ref={ref}
-        className={cn(
-          'w-full bg-transparent py-2 text-base text-card-foreground placeholder:text-muted-foreground',
-          'border-0 border-b border-input focus:outline-none focus:ring-0 focus-visible:ring-0 focus:border-primary transition-colors',
-          'disabled:cursor-not-allowed disabled:opacity-50',
-          className
-        )}
-        {...props}
-      />
-    );
-  }
-);
-FormInput.displayName = 'FormInput';
+const FormInput: React.FC<FormInputProps> = ({ label, id, ...props }) => {
+  return (
+    <div className="grid w-full items-center gap-1.5">
+      <Label htmlFor={id}>{label}</Label>
+      <Input id={id} {...props} />
+    </div>
+  );
+};
 
 export default FormInput;
